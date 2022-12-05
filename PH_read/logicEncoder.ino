@@ -1,9 +1,14 @@
 void onPressed()
 {
     Serial.println("Hola");
-    if(newPos==0){
+    if(newPos==0&&subMenu==false){
        readingDisplay();
        showDisplay=1;
+       lcd.clear();
+      }
+     if(newPos==1&&subMenu==false){
+     // calibrateDisplay(){
+      // showDisplay=1;
        lcd.clear();
        
     }

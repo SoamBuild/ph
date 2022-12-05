@@ -45,7 +45,7 @@ void loop()
 {
   
   button.read();
-  if(subMenu == false){
+  if(subMenu == false&&showDisplay==0){
     firtsDisplay();
   }
   if(subMenu== true && showDisplay==1){
