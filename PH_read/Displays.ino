@@ -15,10 +15,17 @@ void readingDisplay(){
   lcd.print("Medir");
   lcd.setCursor(1, 1);
   lcd.print("Volver");
-  
-
-
-  
+   
+}
+void calibrateDisplay(){
+  rotary (0,1);
+  subMenu=true;
+  //lcd.clear();
+  lcd.setCursor(1, 0);
+  lcd.print("PH 10.0");
+  lcd.setCursor(1, 1);
+  lcd.print("Volver");
+   
 }
 
 void cursorDisplay(int cursorindex){

@@ -43,13 +43,18 @@ void setup()
 // the loop routine runs over and over again forever:
 void loop()
 {
-  
+  //changeDisplay();
   button.read();
   if(subMenu == false&&showDisplay==0){
     firtsDisplay();
   }
   if(subMenu== true && showDisplay==1){
     readingDisplay();
+    //Serial.println("read display");
+  }
+  if(subMenu== true && showDisplay==2){
+    calibrateDisplay();
+    //Serial.println("calibrate display");
   }
   
   float R1 = 222.00;

@@ -1,14 +1,22 @@
 void onPressed()
-{
-    Serial.println("Hola");
-    if(newPos==0&&subMenu==false){
+{   
+  
+    Serial.println("Click");
+    changeDisplay();
+   
+}
+void changeDisplay(){
+  Serial.println("capture value: "+ String(newPos));
+   if(newPos==0&&subMenu==false){
        readingDisplay();
+       Serial.println("read display");
        showDisplay=1;
        lcd.clear();
       }
      if(newPos==1&&subMenu==false){
-     // calibrateDisplay(){
-      // showDisplay=1;
+      calibrateDisplay();
+      Serial.println("calibrate display");
+      showDisplay=2;
        lcd.clear();
        
     }
