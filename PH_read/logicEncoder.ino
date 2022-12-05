@@ -1,5 +1,12 @@
 void onPressed()
 {
+    Serial.println("Hola");
+    if(newPos==0){
+       readingDisplay();
+       showDisplay=1;
+       lcd.clear();
+       
+    }
 }
 
 void rotary(int ROTARYMIN, int ROTARYMAX)
@@ -22,8 +29,10 @@ void rotary(int ROTARYMIN, int ROTARYMAX)
 
     if (lastPos != newPos)
     {
+
         Serial.print(newPos);
         Serial.println();
         lastPos = newPos;
+        cursorDisplay(newPos);
     }
 }
