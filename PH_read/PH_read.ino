@@ -11,6 +11,7 @@ int lastPos = -1;
 int showDisplay =0;
 //Debounce encodervariable
 int check = 0;
+int displayNumber;
 
 float ph4 = 4.00;
 float const ph7 = 7.00;
@@ -25,6 +26,7 @@ RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT);
 EasyButton button(ENCODER_SW);
 
 boolean subMenu=false;
+boolean clickMenu=false;
 void setup()
 {
 
