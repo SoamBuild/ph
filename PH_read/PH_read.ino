@@ -26,7 +26,7 @@ RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT);
 EasyButton button(ENCODER_SW);
 
 boolean subMenu=false;
-boolean clickMenu=false;
+
 void setup()
 {
 
