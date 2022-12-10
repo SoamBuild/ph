@@ -25,7 +25,8 @@ const int ENCODER_SW = 7;
 RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT);
 EasyButton button(ENCODER_SW);
 
-boolean subMenu = false;
+boolean subMenu_Medir = false;
+boolean subMenu_Calibrar=false;
 boolean mainMenu= true;
 
 void setup()
@@ -51,12 +52,12 @@ void loop()
     rotary(0,1);
     firtsDisplay(showDisplay);
   }
-  if(subMenu==true&& displayNumber==2){
+  if(subMenu_Medir==true&& displayNumber==2){
     Serial.println("Medir display");
     rotary(0,1);
     readingDisplay(showDisplay);
   }
-  if(subMenu==true&& displayNumber==3){
+  if(subMenu_Calibrar==true&& displayNumber==3){
     Serial.println("Medir display");
     rotary(0,3);
     calibrateDisplay(showDisplay);

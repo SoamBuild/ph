@@ -12,13 +12,13 @@ void changeDisplay(int display) {
       lcd.clear();
       displayNumber=2;
       mainMenu=false;
-      subMenu=true;
+      subMenu_Medir=true;
     }
     if(display==1){
       lcd.clear();
       displayNumber=3;
       mainMenu=false;
-      subMenu=true;
+      subMenu_Calibrar=true;
     }
   }
   
