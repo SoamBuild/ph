@@ -12,7 +12,7 @@ int showDisplay;
 //Debounce encodervariable
 int check = 0;
 int displayNumber =1;
-int count_SW=0;
+int count_SW=1;
 
 float ph4 = 4.00;
 float const ph7 = 7.00;

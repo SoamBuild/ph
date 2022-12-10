@@ -2,9 +2,12 @@ void onPressed()
 {
   delay(2000);
   changeDisplay(showDisplay);
+  if(mainMenu==false){
   count_SW = count_SW+1;
   Serial.println("pulsador boton: "+String(count_SW));
-
+}else{
+  count_SW=1;
+}
 }
 
 void changeDisplay(int display) {
@@ -26,7 +29,7 @@ void changeDisplay(int display) {
   }
   if(subMenu_Medir == true){
     
-    if(display==0 && count_SW==1 ){
+    if(display==0 && count_SW==2 ){
        mainMenu=true;
       subMenu_Medir=false;
       count_SW=0;
