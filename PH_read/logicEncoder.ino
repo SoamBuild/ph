@@ -2,6 +2,9 @@ void onPressed()
 {
   delay(2000);
   changeDisplay(showDisplay);
+  count_SW = count_SW+1;
+  Serial.println("pulsador boton: "+String(count_SW));
+
 }
 
 void changeDisplay(int display) {
@@ -22,14 +25,27 @@ void changeDisplay(int display) {
     }
   }
   if(subMenu_Medir == true){
-    if(display==0){
-
+    
+    if(display==0 && count_SW==1 ){
+       mainMenu=true;
+      subMenu_Medir=false;
+      count_SW=0;
+      lcd.clear();
+      delay(1000);
+      lcd.setCursor(0,0);
+      lcd.print("Enviando Medicion");
+      delay(2000);
+       lcd.clear();
+      displayNumber=1;
+     
+      
     }
     if(display==1){
       lcd.clear();
       displayNumber=1;
       mainMenu=true;
       subMenu_Medir=false;
+      count_SW=0;
     }
   }
 }

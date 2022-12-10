@@ -12,6 +12,7 @@ int showDisplay;
 //Debounce encodervariable
 int check = 0;
 int displayNumber =1;
+int count_SW=0;
 
 float ph4 = 4.00;
 float const ph7 = 7.00;
@@ -53,12 +54,12 @@ void loop()
     firtsDisplay(showDisplay);
   }
   if(subMenu_Medir==true&& displayNumber==2){
-    Serial.println("Medir display");
+ 
     rotary(0,1);
     readingDisplay(showDisplay);
   }
   if(subMenu_Calibrar==true&& displayNumber==3){
-    Serial.println("Medir display");
+    
     rotary(0,3);
     calibrateDisplay(showDisplay);
   }
