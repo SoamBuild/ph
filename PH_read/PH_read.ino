@@ -8,7 +8,7 @@
 #define ROTARYSTEPS 1
 int newPos;
 int lastPos = -1;
-int showDisplay =0;
+int showDisplay = 0;
 //Debounce encodervariable
 int check = 0;
 int displayNumber;
@@ -25,7 +25,8 @@ const int ENCODER_SW = 7;
 RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT);
 EasyButton button(ENCODER_SW);
 
-boolean subMenu=false;
+boolean subMenu = false;
+boolean mainMenu= true;
 
 void setup()
 {
@@ -47,18 +48,16 @@ void loop()
 {
   //changeDisplay();
   button.read();
-  if(subMenu == false&&showDisplay==0){
+  if (mainMenu == true && showDisplay == 0) {
     firtsDisplay();
   }
-  if(subMenu== true && showDisplay==1){
+  if (subMenu == true && showDisplay == 1) {
     readingDisplay();
-    //Serial.println("read display");
   }
-  if(subMenu== true && showDisplay==2){
+  if (subMenu == true && showDisplay == 2) {
     calibrateDisplay();
-    //Serial.println("calibrate display");
   }
-  
+
   float R1 = 222.00;
   float R2 = 395.00;
   float R3 = 561.00;

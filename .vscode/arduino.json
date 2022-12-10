@@ -1,5 +1,5 @@
 {
     "board": "arduino:avr:uno",
     "port": "COM10",
-    "sketch": "PH_meter\\PH_meter.ino"
+    "sketch": "PH_read\\PH_read.ino"
 }

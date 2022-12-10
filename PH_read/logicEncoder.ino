@@ -1,28 +1,35 @@
 void onPressed()
 {
-  Serial.println("Click Encoder Change Display:" + String(displayNumber);
+  Serial.println("Click Encoder Change Display:" + String(displayNumber));
   changeDisplay();
 }
 // Funcion para cambiar de pantallas
 void changeDisplay() {
-  //Cambiar a la pantalla de PH
-  
-  Serial.println("capture value: " + String(newPos));
+  //Cambiar a la pantalla de ph
   if (displayNumber == 0 && subMenu == false) {
-    readingDisplay();
     Serial.println("read display");
     showDisplay = 1;
-    lcd.clear();
+  //  lcd.clear();
+    readingDisplay();
   }
-  
+
   //Cambiar a la pantalla de calibracion
-  if (displayNumber == 1 && subMenu == false) {
-    calibrateDisplay();
+  if (displayNumber == 1 && subMenu == false ) {
     Serial.println("calibrate display");
     showDisplay = 2;
-    lcd.clear();
+   // lcd.clear();
+    calibrateDisplay();
+  }
+  if (displayNumber == 1 && subMenu == true && mainMenu==false) {
+   
+    Serial.println("First display");
+    showDisplay = 0;
+    displayNumber =2;
+   // lcd.clear();
+    firtsDisplay();
   }
 }
+
 
 //Funcion de encoder con valor min y max
 void rotary(int ROTARYMIN, int ROTARYMAX)
@@ -38,7 +45,7 @@ void rotary(int ROTARYMIN, int ROTARYMAX)
   {
     encoder.setPosition(ROTARYMAX / ROTARYSTEPS);
     newPos = ROTARYMAX;
-  } 
+  }
   if (lastPos != newPos)
   {
     Serial.print(newPos);
