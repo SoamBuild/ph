@@ -51,6 +51,11 @@ void loop()
     rotary(0,1);
     firtsDisplay(showDisplay);
   }
+  if(subMenu==true&& displayNumber==2){
+    Serial.println("Medir display");
+    rotary(0,1);
+    readingDisplay(showDisplay);
+  }
    
     /*
   }

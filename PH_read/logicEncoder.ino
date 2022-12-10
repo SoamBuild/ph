@@ -1,11 +1,27 @@
 void onPressed()
 {
   delay(2000);
-  changeDisplay();
+  changeDisplay(showDisplay);
 }
-// Funcion para cambiar de pantallas
-void changeDisplay() {
-  //Cambiar a la pantalla de ph
+
+void changeDisplay(int display) {
+  Serial.println("changedisplay to:"+String(display));
+
+  if(mainMenu==true){
+    if(display==0){
+      lcd.clear();
+      displayNumber=2;
+      mainMenu=false;
+      subMenu=true;
+    }
+    if(display==2){
+      lcd.clear();
+      displayNumber=3;
+      mainMenu=false;
+      subMenu=true;
+    }
+  }
+  
 
   
 }
@@ -30,10 +46,9 @@ void rotary(int ROTARYMIN, int ROTARYMAX)
   {
    
     lastPos = newPos;
-    //lcd.clear();
-     Serial.print(newPos);
-    Serial.println();
+    Serial.println(newPos);
     showDisplay = newPos; // Actualiza el numero de la pantalla
+    
    // cursorDisplay(newPos); // Muestra el cursos que se actualiza en Y segun el encoder
   }
 }
