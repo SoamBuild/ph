@@ -43,17 +43,39 @@ void firtsDisplay(int display_Home) {
 
   }
 }
-void calibrateDisplay() {
-  rotary (0, 1);
-  mainMenu = false;
-  subMenu = true;
-  lcd.setCursor(1, 0);
-  lcd.print("PH 10.0    ");
-  lcd.setCursor(1, 1);
-  lcd.print("Volver     ");
-}
-void cursorDisplay(int cursorindex) {
-  lcd.clear();
-  lcd.setCursor(0, cursorindex);
-  lcd.print(">");
+void calibrateDisplay(int display_Calibrar) {
+  lcd.setCursor(0,0);
+  lcd.print("Calibrar PH");
+  switch (display_Calibrar)
+  {
+  case  0:
+    lcd.setCursor(0, 1);
+    lcd.print("PH 4.0");
+    lcd.setCursor(13,1);
+    lcd.print("1/4");
+    /* code */
+    break;
+    case 1:
+    lcd.setCursor(0, 1);
+    lcd.print("PH 7.0");
+    lcd.setCursor(13,1);
+    lcd.print("2/4");
+    /* code */
+    break;
+    case 2:
+    lcd.setCursor(0, 1);
+    lcd.print("PH 10.0");
+    lcd.setCursor(13,1);
+    lcd.print("3/4");
+    /* code */
+    break;
+     case 3:
+    lcd.setCursor(0, 1);
+    lcd.print("Volver ");
+    lcd.setCursor(13,1);
+    lcd.print("4/4");
+    /* code */
+    break;
+
+  }
 }

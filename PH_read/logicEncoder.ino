@@ -14,7 +14,7 @@ void changeDisplay(int display) {
       mainMenu=false;
       subMenu=true;
     }
-    if(display==2){
+    if(display==1){
       lcd.clear();
       displayNumber=3;
       mainMenu=false;
