@@ -120,3 +120,6 @@ void loop()
     // erial.pritl
   */
 }
+void toCloud(int valuetoSave){
+
+}
