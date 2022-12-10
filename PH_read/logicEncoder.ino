@@ -28,11 +28,10 @@ void changeDisplay(int display) {
     }
   }
   if(subMenu_Medir == true){
-    
     if(display==0 && count_SW==2 ){
        mainMenu=true;
       subMenu_Medir=false;
-      count_SW=0;
+      count_SW=1;
       lcd.clear();
       delay(1000);
       lcd.setCursor(0,0);
@@ -40,15 +39,34 @@ void changeDisplay(int display) {
       delay(2000);
        lcd.clear();
       displayNumber=1;
-     
-      
-    }
+      }
     if(display==1){
       lcd.clear();
       displayNumber=1;
       mainMenu=true;
       subMenu_Medir=false;
-      count_SW=0;
+      count_SW=1;
+    }
+  }
+  if(subMenu_Calibrar == true){
+    if(display==0 && count_SW==2){
+
+    }
+     if(display==1 ){
+      
+    }
+     if(display==2){
+      
+      
+    }
+    if(display==3){
+      lcd.clear();
+      displayNumber=1;
+      mainMenu=true;
+      subMenu_Calibrar=false;
+      count_SW=1;
+      
+      
     }
   }
 }
