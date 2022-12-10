@@ -46,10 +46,6 @@ void setup()
 // the loop routine runs over and over again forever:
 void loop()
 {
- // 
-  //
-  //Serial.println("ID DISPLAY: "+String(showDisplay));
-  //changeDisplay();
   button.read();
   if (mainMenu == true && displayNumber==1 ) {
     rotary(0,1);
