@@ -21,9 +21,17 @@ void changeDisplay(int display) {
       subMenu_Calibrar=true;
     }
   }
-  
+  if(subMenu_Medir == true){
+    if(display==0){
 
-  
+    }
+    if(display==1){
+      lcd.clear();
+      displayNumber=1;
+      mainMenu=true;
+      subMenu_Medir=false;
+    }
+  }
 }
 
 
