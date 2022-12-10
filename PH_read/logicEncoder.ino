@@ -1,15 +1,19 @@
 void onPressed()
 {
   Serial.println("Click Encoder Change Display:" + String(displayNumber));
+  Serial.println("MENU PRINCIPAL STATE: "+String(mainMenu));
+  Serial.println("SUBMENU STATE: "+String(subMenu));
+  Serial.println("ID DISPLAY: "+String(showDisplay));
+  delay(2000);
   changeDisplay();
 }
 // Funcion para cambiar de pantallas
 void changeDisplay() {
   //Cambiar a la pantalla de ph
+
   if (displayNumber == 0 && subMenu == false) {
     Serial.println("read display");
     showDisplay = 1;
-  //  lcd.clear();
     readingDisplay();
   }
 
@@ -17,17 +21,15 @@ void changeDisplay() {
   if (displayNumber == 1 && subMenu == false ) {
     Serial.println("calibrate display");
     showDisplay = 2;
-   // lcd.clear();
     calibrateDisplay();
   }
-  if (displayNumber == 1 && subMenu == true && mainMenu==false) {
-   
-    Serial.println("First display");
-    showDisplay = 0;
-    displayNumber =2;
-   // lcd.clear();
-    firtsDisplay();
-  }
+
+  if(mainMenu==false && displayNumber==1){
+    Serial.println("main menu");
+    showDisplay =0;
+   // firtsDisplay();
+
+  }  
 }
 
 
@@ -48,10 +50,12 @@ void rotary(int ROTARYMIN, int ROTARYMAX)
   }
   if (lastPos != newPos)
   {
-    Serial.print(newPos);
-    Serial.println();
+   
     lastPos = newPos;
-    displayNumber = newPos; // Actualiza el numero de la pantalla
-    cursorDisplay(newPos); // Muestra el cursos que se actualiza en Y segun el encoder
+    //lcd.clear();
+     Serial.print(newPos);
+    Serial.println();
+    showDisplay = newPos; // Actualiza el numero de la pantalla
+   // cursorDisplay(newPos); // Muestra el cursos que se actualiza en Y segun el encoder
   }
 }

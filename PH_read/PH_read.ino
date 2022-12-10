@@ -8,10 +8,10 @@
 #define ROTARYSTEPS 1
 int newPos;
 int lastPos = -1;
-int showDisplay = 0;
+int showDisplay;
 //Debounce encodervariable
 int check = 0;
-int displayNumber;
+int displayNumber =1;
 
 float ph4 = 4.00;
 float const ph7 = 7.00;
@@ -46,17 +46,27 @@ void setup()
 // the loop routine runs over and over again forever:
 void loop()
 {
+ // 
+  //
+  //Serial.println("ID DISPLAY: "+String(showDisplay));
   //changeDisplay();
   button.read();
-  if (mainMenu == true && showDisplay == 0) {
-    firtsDisplay();
+  if (mainMenu == true && displayNumber==1 ) {
+    rotary(0,1);
+    firtsDisplay(showDisplay);
+  }
+   
+    /*
   }
   if (subMenu == true && showDisplay == 1) {
     readingDisplay();
+   
   }
-  if (subMenu == true && showDisplay == 2) {
+  if (subMenu == true  && showDisplay == 2) {
     calibrateDisplay();
+    
   }
+
 
   float R1 = 222.00;
   float R2 = 395.00;
