@@ -1,3 +1,4 @@
+//Text x main menu
 void firtsDisplay(int display_Home) {
   lcd.setCursor(0,0);
   lcd.print("Ducasse PH CTRL");
@@ -21,6 +22,7 @@ void firtsDisplay(int display_Home) {
 
   }
 }
+//Text x read menu
   void readingDisplay(int display_Medir) {
   lcd.setCursor(0,0);
   lcd.print("Medir PH");
@@ -43,6 +45,7 @@ void firtsDisplay(int display_Home) {
 
   }
 }
+//Text x calibration menu
 void calibrateDisplay(int display_Calibrar) {
   lcd.setCursor(0,0);
   lcd.print("Calibrar PH");
@@ -79,13 +82,13 @@ void calibrateDisplay(int display_Calibrar) {
 
   }
 }
+//Text x calibration menu 
 void calibration_analog_Display(int PH,int time){
 
-   lcd.setCursor(0, 0);
+    lcd.setCursor(0, 0);
     lcd.print("Adjust PH: "+String(PH));
     lcd.setCursor(0, 1);
     lcd.print("Tiempo Res: "+String(time));
   
-    /* code */
-
+    
 }
