@@ -50,6 +50,14 @@ void changeDisplay(int display) {
   }
   if(subMenu_Calibrar == true){
     if(display==0 && count_SW==2){
+      lcd.clear();
+      mainMenu=false;
+      subMenu_Calibrar=false;
+      subMenu_Calibrar_2=true;
+      displayNumber=4;
+      count_SW=1;
+
+
 
     }
      if(display==1 ){

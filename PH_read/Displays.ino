@@ -79,3 +79,13 @@ void calibrateDisplay(int display_Calibrar) {
 
   }
 }
+void calibration_analog_Display(int PH,int time){
+
+   lcd.setCursor(0, 0);
+    lcd.print("Adjust PH: "+String(PH));
+    lcd.setCursor(0, 1);
+    lcd.print("Tiempo Res: "+String(time));
+  
+    /* code */
+
+}

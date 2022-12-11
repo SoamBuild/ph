@@ -28,7 +28,12 @@ EasyButton button(ENCODER_SW);
 
 boolean subMenu_Medir = false;
 boolean subMenu_Calibrar=false;
+boolean subMenu_Calibrar_2=false;
 boolean mainMenu= true;
+
+float R1 = 222.00;
+  float R2 = 395.00;
+  float R3 = 561.00;
 
 void setup()
 {
@@ -45,7 +50,7 @@ void setup()
   lcd.clear();
 }
 
-// the loop routine runs over and over again forever:
+
 void loop()
 {
   button.read();
@@ -63,7 +68,9 @@ void loop()
     rotary(0,3);
     calibrateDisplay(showDisplay);
   }
-   
+  if(subMenu_Calibrar_2 ==true && displayNumber ==4){
+    calibrationPH4();
+  }
     /*
   }
   if (subMenu == true && showDisplay == 1) {
@@ -123,4 +130,12 @@ void loop()
 }
 void toCloud(int valuetoSave){
 
+}
+void calibrationPH4(){
+  for(int i=0;i<60;i++){
+    R1 = analogRead(A0);
+    calibration_analog_Display(4,i);
+    delay(1000);
+
+  }
 }
