@@ -142,38 +142,44 @@ void loop()
   */
 }
 void toCloud(int valuetoSave){
+  //function X save value firebase
 
 }
+//Calibracion R1 x 1 minuto
 void calibrationPH4(){
   for(int i=0;i<60;i++){
     R1 = analogRead(A0);
     calibration_analog_Display(4,i);
     delay(1000);
   }
+  //Volver a menu de calibracion
   lcd.clear();
   subMenu_Calibrar_2=false;
   subMenu_Calibrar=true;
   displayNumber=3;
-  
 }
+//Calibracion R2 x 1 minuto
 void calibrationPH7(){
   for(int i=0;i<60;i++){
     R2 = analogRead(A0);
     calibration_analog_Display(7,i);
     delay(1000);
   }
+  //Volver a menu de calibracion
   lcd.clear();
   subMenu_Calibrar_2=false;
   subMenu_Calibrar=true;
   displayNumber=3;
   
 }
+//Calibracion R3 x 1 minuto
 void calibrationPH10(){
   for(int i=0;i<60;i++){
     R3 = analogRead(A0);
     calibration_analog_Display(10,i);
     delay(1000);
   }
+  //Volver a menu de calibracion
   lcd.clear();
   subMenu_Calibrar_2=false;
   subMenu_Calibrar=true;
