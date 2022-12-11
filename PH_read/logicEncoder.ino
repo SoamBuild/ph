@@ -1,19 +1,19 @@
+//Function click encoder
 void onPressed()
 {
-  delay(2000);
+  delay(1000);
   changeDisplay(showDisplay);
   if(mainMenu==false){
-  count_SW = count_SW+1;
-  Serial.println("pulsador boton: "+String(count_SW));
+  count_SW = count_SW+1; // debounce click x submenus
 }else{
-  count_SW=1;
+  count_SW=1;// en menu principal reestablece el valor
 }
 }
 
 void changeDisplay(int display) {
-  Serial.println("changedisplay to:"+String(display));
-
+ // Menu principal
   if(mainMenu==true){
+    // In medir submenu
     if(display==0){
       lcd.clear();
       displayNumber=2;
@@ -21,13 +21,16 @@ void changeDisplay(int display) {
       subMenu_Medir=true;
     }
     if(display==1){
+      // In medir calibracion menu
       lcd.clear();
       displayNumber=3;
       mainMenu=false;
       subMenu_Calibrar=true;
     }
   }
+  //Medir menu
   if(subMenu_Medir == true){
+    //Click para enviar dato a la nube
     if(display==0 && count_SW==2 ){
        mainMenu=true;
       subMenu_Medir=false;
@@ -40,6 +43,7 @@ void changeDisplay(int display) {
        lcd.clear();
       displayNumber=1;
       }
+      //Volver al menu principal
     if(display==1){
       lcd.clear();
       displayNumber=1;
@@ -48,7 +52,9 @@ void changeDisplay(int display) {
       count_SW=1;
     }
   }
+  //menu de calibracion
   if(subMenu_Calibrar == true){
+    // Calibrar R1
     if(display==0 && count_SW==2){
       lcd.clear();
       mainMenu=false;
@@ -57,6 +63,7 @@ void changeDisplay(int display) {
       displayNumber=4;
       count_SW=1;
     }
+    //Calibrar R2
      if(display==1 && count_SW==2 ){
       
       lcd.clear();
@@ -67,6 +74,7 @@ void changeDisplay(int display) {
       count_SW=1;
       
     }
+    //Calibrar R3
      if(display==2 && count_SW==2){
          lcd.clear();
       mainMenu=false;
@@ -74,18 +82,15 @@ void changeDisplay(int display) {
       subMenu_Calibrar_2=true;
       displayNumber=6;
       count_SW=1;
-      
-      
     }
+    //Volver al menu principal
     if(display==3 && count_SW==2){
       lcd.clear();
       displayNumber=1;
       mainMenu=true;
       subMenu_Calibrar=false;
       count_SW=1;
-      
-      
-    }
+      }
   }
 }
 
