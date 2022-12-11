@@ -3,37 +3,37 @@
 #include <RotaryEncoder.h>
 #include <EasyButton.h>
 
-
 #define ROTARYSTEPS 1
-#define ROTARYSTEPS 1
-int newPos;
-int lastPos = -1;
-int showDisplay;
-//Debounce encodervariable
-int check = 0;
-int displayNumber =1;
-int count_SW=1;
 
-float ph4 = 4.00;
-float const ph7 = 7.00;
-float const ph10 = 10.00;
+int newPos; //Value Rotary
+int lastPos = -1; //Value x rotary
+int check = 0; // value x rotary
+int displayNumber =1; // id display
+int count_SW=1;  //Click count x SW_ENCODER
+int showDisplay; // Update value rotary
 
-LiquidCrystal_I2C lcd(0x3F, 16, 2);
+float const ph4 = 4.00; // Value x PH Calculated
+float const ph7 = 7.00;// Value x PH Calculated
+float const ph10 = 10.00;// Value x PH Calculated
+float R1 = 222.00;// Value x PH Calculated
+float R2 = 395.00;// Value x PH Calculated
+float R3 = 561.00;// Value x PH Calculated
 
-const int ENCODER_CLK = 5;
-const int ENCODER_DT = 6;
-const int ENCODER_SW = 7;
-RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT);
-EasyButton button(ENCODER_SW);
+LiquidCrystal_I2C lcd(0x3F, 16, 2); //Setup x lcd
 
+const int ENCODER_CLK = 5;// Pins x Encoder
+const int ENCODER_DT = 6;// Pins x Encoder
+const int ENCODER_SW = 7;// Pins x Encoder
+RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT); // Setup x Encoder
+EasyButton button(ENCODER_SW);// Check x click rotarys
+
+//Enter or Out Menus
 boolean subMenu_Medir = false;
 boolean subMenu_Calibrar=false;
 boolean subMenu_Calibrar_2=false;
 boolean mainMenu= true;
 
-float R1 = 222.00;
-  float R2 = 395.00;
-  float R3 = 561.00;
+
 
 void setup()
 {
