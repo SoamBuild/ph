@@ -37,43 +37,50 @@ boolean mainMenu= true;
 
 void setup()
 {
-
+  // Init and function button pressed
   button.begin();
   button.onPressed(onPressed);
-
+  //Serial init
   Serial.begin(9600);
+  //LCD INIT 
   lcd.init();
   lcd.backlight();
+  //Print hello Message
   lcd.print("PH Ducasse");
-  button.begin();
-  button.onPressed(onPressed);
+ delay (3000);
   lcd.clear();
 }
 
 
 void loop()
 {
-  button.read();
+  button.read(); //Read change button
+  //Menu inicial
   if (mainMenu == true && displayNumber==1 ) {
     rotary(0,1);
     firtsDisplay(showDisplay);
   }
+  //Menu de lectura
   if(subMenu_Medir==true&& displayNumber==2){
  
     rotary(0,1);
     readingDisplay(showDisplay);
   }
+  //Menu de calibracion 
   if(subMenu_Calibrar==true&& displayNumber==3){
     
     rotary(0,3);
     calibrateDisplay(showDisplay);
   }
+  //Calibracion de R1
   if(subMenu_Calibrar_2 ==true && displayNumber ==4){
     calibrationPH4();
   }
+  //Calibracion de R2
   if(subMenu_Calibrar_2 ==true && displayNumber ==5){
     calibrationPH7();
   }
+  //Calibracion de R3
     if(subMenu_Calibrar_2 ==true && displayNumber ==6){
     calibrationPH10();
   }
