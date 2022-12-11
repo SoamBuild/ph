@@ -74,6 +74,9 @@ void loop()
   if(subMenu_Calibrar_2 ==true && displayNumber ==5){
     calibrationPH7();
   }
+    if(subMenu_Calibrar_2 ==true && displayNumber ==6){
+    calibrationPH10();
+  }
     /*
   }
   if (subMenu == true && showDisplay == 1) {
@@ -150,6 +153,18 @@ void calibrationPH7(){
   for(int i=0;i<60;i++){
     R2 = analogRead(A0);
     calibration_analog_Display(7,i);
+    delay(1000);
+  }
+  lcd.clear();
+  subMenu_Calibrar_2=false;
+  subMenu_Calibrar=true;
+  displayNumber=3;
+  
+}
+void calibrationPH10(){
+  for(int i=0;i<60;i++){
+    R3 = analogRead(A0);
+    calibration_analog_Display(10,i);
     delay(1000);
   }
   lcd.clear();

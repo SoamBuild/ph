@@ -67,11 +67,17 @@ void changeDisplay(int display) {
       count_SW=1;
       
     }
-     if(display==2){
+     if(display==2 && count_SW==2){
+         lcd.clear();
+      mainMenu=false;
+      subMenu_Calibrar=false;
+      subMenu_Calibrar_2=true;
+      displayNumber=6;
+      count_SW=1;
       
       
     }
-    if(display==3){
+    if(display==3 && count_SW==2){
       lcd.clear();
       displayNumber=1;
       mainMenu=true;
