@@ -30,7 +30,7 @@ void firtsDisplay(int display_Home) {
   {
   case  0:
     lcd.setCursor(0, 1);
-    lcd.print("PH: "+String(random(0,10)));
+    lcd.print("PH: "+String(globalPh));
     lcd.setCursor(13,1);
     lcd.print("1/2");
     /* code */
