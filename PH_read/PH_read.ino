@@ -68,10 +68,18 @@ void loop()
   btn_NEXT.read();
   
   
-  if (mainMenu == true && displayNumber==1 ) {
-    //rotary(0,1);
+  if (mainMenu == true ) {
     firtsDisplay(showDisplay);
   }
+   
+  if (mainMenu == true && showDisplay==1 ) {
+    getPH();
+    //firtsDisplay(showDisplay);
+  }
+  if(mainMenu==true && displayNumber ==2){
+    calibrationPH4();
+  }
+  /*
   //Menu de lectura
   if(subMenu_Medir==true&& displayNumber==2){
  
@@ -98,7 +106,7 @@ void loop()
     calibrationPH10();
   }
   
-    
+    */
 }
 void getPH(){
   int sensorValue = analogRead(12);

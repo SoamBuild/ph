@@ -2,20 +2,21 @@ void changeDisplay(int display) {
  // Menu principal
   if(mainMenu==true){
     // In medir submenu
-    if(display==0){
+    if(display==2){
       lcd.clear();
       displayNumber=2;
-      mainMenu=false;
-      subMenu_Medir=true;
+      //mainMenu=false;
+      //subMenu_Medir=true;
     }
     if(display==1){
       // In medir calibracion menu
-      lcd.clear();
-      displayNumber=3;
-      mainMenu=false;
-      subMenu_Calibrar=true;
+      //lcd.clear();
+      //displayNumber=3;
+      //mainMenu=false;
+      //subMenu_Calibrar=true;
     }
-  }
+  }}
+  /*
   //Medir menu
   if(subMenu_Medir == true){
     //Click para enviar dato a la nube
@@ -81,7 +82,7 @@ void changeDisplay(int display) {
       }
   }
 }
-
+*/
 
 //Funcion de encoder con valor min y max
 void rotary(int ROTARYMIN, int ROTARYMAX)
