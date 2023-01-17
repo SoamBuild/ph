@@ -18,6 +18,7 @@ void onPressed2()
  showDisplay= showDisplay +1;
  Serial.println(showDisplay);
  limits(1,5);//limite de pantallas 
+ lcd.clear();
 
 }
 
