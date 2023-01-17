@@ -1,6 +1,7 @@
 //Function click encoder
 void onPressed()
 {
+  /*
   delay(1000);
   changeDisplay(showDisplay);
   if(mainMenu==false){
@@ -8,6 +9,12 @@ void onPressed()
 }else{
   count_SW=1;// en menu principal reestablece el valor
 }
+*/
+}
+void onPressed2()
+{
+ showDisplay= showDisplay +1;
+ Serial.println(showDisplay);
 }
 
 void changeDisplay(int display) {
@@ -115,7 +122,7 @@ void rotary(int ROTARYMIN, int ROTARYMAX)
    
     lastPos = newPos;
     Serial.println(newPos);
-    showDisplay = newPos; // Actualiza el numero de la pantalla
+   // showDisplay = newPos; // Actualiza el numero de la pantalla
     
    // cursorDisplay(newPos); // Muestra el cursos que se actualiza en Y segun el encoder
   }

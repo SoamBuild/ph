@@ -10,7 +10,7 @@ int lastPos = -1; //Value x rotary
 int check = 0; // value x rotary
 int displayNumber =1; // id display
 int count_SW=1;  //Click count x SW_ENCODER
-int showDisplay; // Update value rotary
+int showDisplay=0; // Update value rotary
 
 float const ph4 = 4.00; // Value x PH Calculated
 float const ph7 = 7.00;// Value x PH Calculated
@@ -21,13 +21,19 @@ float R3 = 561.00;// Value x PH Calculated
 
 float globalPh; //Variable global para actualizar valor de PH
 
-LiquidCrystal_I2C lcd(0x3F, 16, 2); //Setup x lcd
+LiquidCrystal_I2C lcd(0x27, 16, 2); //Setup x lcd
 
-const int ENCODER_CLK = 5;// Pins x Encoder
-const int ENCODER_DT = 6;// Pins x Encoder
-const int ENCODER_SW = 7;// Pins x Encoder
+const int ENCODER_CLK = 14;// Pins x Encoder
+const int ENCODER_DT = 15;// Pins x Encoder
+const int ENCODER_SW = 16;// Pins x Encoder
 RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT); // Setup x Encoder
-EasyButton button(ENCODER_SW);// Check x click rotarys
+
+
+const int button_NEXT = 18;
+const int button_ENTER = 5;
+
+EasyButton btn_ENTER(button_ENTER);// Check x click rotarys
+EasyButton btn_NEXT(button_NEXT);// Check x click rotarys
 
 //Enter or Out Menus
 boolean subMenu_Medir = false;
@@ -39,9 +45,11 @@ boolean mainMenu= true;
 
 void setup()
 {
-  // Init and function button pressed
-  button.begin();
-  button.onPressed(onPressed);
+  // Init and function btn_ENTER pressed
+  btn_ENTER.begin();
+  btn_NEXT.begin();
+  btn_ENTER.onPressed(onPressed);
+  btn_NEXT.onPressed(onPressed2);
   //Serial init
   Serial.begin(9600);
   //LCD INIT 
@@ -56,7 +64,9 @@ void setup()
 
 void loop()
 {
-  button.read(); //Read change button
+  btn_ENTER.read(); //Read change btn_ENTER
+  btn_NEXT.read();
+  /*
   //Menu inicial
   if (mainMenu == true && displayNumber==1 ) {
     rotary(0,1);
@@ -87,10 +97,11 @@ void loop()
     if(subMenu_Calibrar_2 ==true && displayNumber ==6){
     calibrationPH10();
   }
+  */
     
 }
 void getPH(){
-  int sensorValue = analogRead(A1);
+  int sensorValue = analogRead(12);
   // primer recta 4 y 7
   //float ph = ((ph7 - ph4) / (R2 - R1)) * (sensorValue - R1) + ph4;
   //Segunda recta 4 y 10
@@ -100,14 +111,14 @@ void getPH(){
     {
       float ph = ((ph7 - ph4) / (R2 - R1)) * (sensorValue - R1) + ph4;
       globalPh= ph;
-      Serial.println("PH RECTA1 ;" + String(ph));
+      Serial.println("PH RECT12 ;" + String(ph));
     }
     // si no alcanza el minimo buffer minimo
     if (sensorValue < R1)
     {
       float ph = ((ph7 - ph4) / (R2 - R1)) * (sensorValue - R1) + ph4;
       globalPh = ph;
-      Serial.println("PH RECTA1 ;" + String(ph));
+      Serial.println("PH RECT12 ;" + String(ph));
     }
 
     // si se pasa del buffer
