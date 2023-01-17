@@ -5,20 +5,45 @@ void firtsDisplay(int display_Home) {
 
   switch (display_Home)
   {
-  case  0:
+  case  1:
     lcd.setCursor(0, 1);
-    lcd.print("Medir      ");
-    lcd.setCursor(13,1);
-    lcd.print("1/2");
+    lcd.print("PH ACTUAL  ");
+    lcd.setCursor(10, 1);
+    lcd.print(globalPh);
+    lcd.setCursor(0,13);
+    //lcd.print("1/5");
     /* code */
     break;
-    case 1:
+    case 2:
     lcd.setCursor(0, 1);
-    lcd.print("Calibrar PH      ");
+    lcd.print("Calibrar PH 4.0     ");
     lcd.setCursor(13,1);
-    lcd.print("2/2");
+    //lcd.print("2/5");
     /* code */
     break;
+    case 3:
+    lcd.setCursor(0, 1);
+    lcd.print("Calibrar PH 7.0     ");
+    lcd.setCursor(13,1);
+    //lcd.print("3/5");
+    /* code */
+    break;
+    case 4:
+    lcd.setCursor(0, 1);
+    lcd.print("Calibrar PH 10.0    ");
+    lcd.setCursor(13,1);
+    //lcd.print("4/5");
+    /* code */
+    break;
+    case 5:
+    lcd.setCursor(0, 1);
+    lcd.print("Delete WIFI");
+    lcd.setCursor(13,1);
+    //lcd.print("5/5");
+    /* code */
+    break;
+
+
 
   }
 }

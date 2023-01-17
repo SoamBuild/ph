@@ -10,7 +10,7 @@ int lastPos = -1; //Value x rotary
 int check = 0; // value x rotary
 int displayNumber =1; // id display
 int count_SW=1;  //Click count x SW_ENCODER
-int showDisplay=0; // Update value rotary
+int showDisplay=1; // Update value rotary
 
 float const ph4 = 4.00; // Value x PH Calculated
 float const ph7 = 7.00;// Value x PH Calculated
@@ -66,10 +66,10 @@ void loop()
 {
   btn_ENTER.read(); //Read change btn_ENTER
   btn_NEXT.read();
-  /*
-  //Menu inicial
+  
+  
   if (mainMenu == true && displayNumber==1 ) {
-    rotary(0,1);
+    //rotary(0,1);
     firtsDisplay(showDisplay);
   }
   //Menu de lectura
@@ -97,7 +97,7 @@ void loop()
     if(subMenu_Calibrar_2 ==true && displayNumber ==6){
     calibrationPH10();
   }
-  */
+  
     
 }
 void getPH(){
