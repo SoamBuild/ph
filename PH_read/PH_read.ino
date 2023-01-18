@@ -78,6 +78,9 @@ FirebaseJson json;
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 int timestamp;
+//Muestreo
+unsigned long previousMillis = millis();
+long muestreo = 30000;
  
 
 
@@ -153,6 +156,9 @@ void setup()
   Serial.print("User UID: ");
   Serial.println(uid);
   databasePath = "/UsersData/" + uid + "/readings";
+  //ntp setup
+  timeClient.begin();
+
  
   //Check Calibration PH4
   readFile(LittleFS, "/r1.txt");
@@ -206,6 +212,7 @@ void loop()
     wm.resetSettings();
     ESP.restart();
   }
+  capturedata();
   /*
   //Menu de lectura
   if(subMenu_Medir==true&& displayNumber==2){
@@ -234,6 +241,12 @@ void loop()
   }
   
     */
+}
+//GetTimefromNTP
+unsigned long getTime() {
+  timeClient.update();
+  unsigned long now = timeClient.getEpochTime();
+  return now;
 }
 void getPH(){
   int sensorValue = analogRead(sensorph);
