@@ -91,23 +91,26 @@ void setup()
   //WIFI MANAGER
   const char* menu[] = {"wifi","param","restart","exit"}; //Disabled infobtn
   wm.setMenu(menu,4);
-  wm.setConnectTimeout(120);// tiempo en segundo
+  wm.setConnectTimeout(30);// tiempo en segundo
    bool res;
   res = wm.autoConnect("Estanque1 WM"); 
-  if (!res) {
+  if (res) {
+    lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("wifi ok");
+    //if you get here you have connected to the WiFi
+    Serial.println("connected...yeey :)");
+    
+  }
+  else {
     Serial.println("Failed to connect");
     lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("wifi failed");
     // ESP.restart();
+   
   }
-  else {
-      lcd.clear();
-  lcd.setCursor(0,0);
-  lcd.print("wifi ok");
-    //if you get here you have connected to the WiFi
-    Serial.println("connected...yeey :)");
-  }
+     
 
  
   //Check Calibration PH4
