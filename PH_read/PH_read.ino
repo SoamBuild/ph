@@ -159,9 +159,10 @@ void calibrationPH4(){
   }
   //Volver a menu de calibracion
   lcd.clear();
-  subMenu_Calibrar_2=false;
-  subMenu_Calibrar=true;
-  displayNumber=3;
+ // subMenu_Calibrar_2=false;
+  //subMenu_Calibrar=true;
+  showDisplay=1;
+  displayNumber=0;
 }
 //Calibracion R2 x 1 minuto
 void calibrationPH7(){
@@ -172,9 +173,9 @@ void calibrationPH7(){
   }
   //Volver a menu de calibracion
   lcd.clear();
-  subMenu_Calibrar_2=false;
-  subMenu_Calibrar=true;
-  displayNumber=3;
+  //subMenu_Calibrar_2=false;
+  //subMenu_Calibrar=true;
+  displayNumber=0;
   
 }
 //Calibracion R3 x 1 minuto
