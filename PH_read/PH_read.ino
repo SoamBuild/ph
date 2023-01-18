@@ -32,11 +32,11 @@ float const ph10 = 10.00; // Value x PH Calculated
 float R1 = 222.00;        // Value x PH Calculated
 float R2 = 395.00;        // Value x PH Calculated
 float R3 = 561.00;        // Value x PH Calculated
-int sensorph = 12;
+int sensorph = 34;
 
 float globalPh; // Variable global para actualizar valor de PH
 
-LiquidCrystal_I2C lcd(0x27, 16, 2); // Setup x lcd
+LiquidCrystal_I2C lcd(0x27, 20, 4); // Setup x lcd
 
 const int ENCODER_CLK = 14;                     // Pins x Encoder
 const int ENCODER_DT = 15;                      // Pins x Encoder
@@ -57,10 +57,10 @@ String value;
 // object WifiManager
 WiFiManager wm;
 // Firebase Setting
-#define API_KEY       ""
-#define DATABASE_URL  ""
-#define USER_EMAIL    ""
-#define USER_PASSWORD ""
+#define API_KEY       "AIzaSyCInsRcqVgx1nG5siOzWItlhiemvKNqq3E"
+#define DATABASE_URL  "https://test32firebase-default-rtdb.firebaseio.com/"
+#define USER_EMAIL    "arebolledo@udd.cl"
+#define USER_PASSWORD "unodos34"
 int counter = 1;
 FirebaseData fbdo;
 FirebaseAuth auth;
@@ -95,6 +95,7 @@ void setup()
   lcd.init();
   lcd.backlight();
   // Print hello Message
+  lcd.setCursor(0, 5);
   lcd.print("PH Ducasse");
   delay(2000);
   lcd.clear();
@@ -182,6 +183,7 @@ void setup()
   R3 = value.toFloat();
   Serial.println(" calibracion recuperada: " + String(R3));
   delay(2000);
+  lcd.clear();
 }
 
 void loop()
@@ -221,7 +223,7 @@ void loop()
     wm.resetSettings();
     ESP.restart();
   }
-  capturedata();
+ // capturedata();
   /*
   //Menu de lectura
   if(subMenu_Medir==true&& displayNumber==2){

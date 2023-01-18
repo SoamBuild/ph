@@ -49,8 +49,10 @@ void setupcheck(String part, String state)
 {
   lcd.clear();
   lcd.setCursor(0, 0);
+  lcd.print("PH Ducasse");
+  lcd.setCursor(1, 0);
   lcd.print("Check " + part);
-  lcd.setCursor(0, 1);
+  lcd.setCursor(2, 0);
   lcd.print(state);
   delay(1200);
 }
