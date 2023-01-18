@@ -23,6 +23,7 @@ float const ph10 = 10.00;// Value x PH Calculated
 float R1 = 222.00;// Value x PH Calculated
 float R2 = 395.00;// Value x PH Calculated
 float R3 = 561.00;// Value x PH Calculated
+int sensorph=12;
 
 float globalPh; //Variable global para actualizar valor de PH
 
@@ -146,7 +147,7 @@ void loop()
     */
 }
 void getPH(){
-  int sensorValue = analogRead(12);
+  int sensorValue = analogRead(sensorph);
   // primer recta 4 y 7
   //float ph = ((ph7 - ph4) / (R2 - R1)) * (sensorValue - R1) + ph4;
   //Segunda recta 4 y 10
@@ -190,11 +191,12 @@ void toCloud(int valuetoSave){
 //Calibracion R1 x 1 minuto
 void calibrationPH4(){
   for(int i=0;i<60;i++){
-    R1 = analogRead(A0);
+    R1 = analogRead(sensorph);
     Serial.println(R1);
     calibration_analog_Display(4,i);
     delay(1000);
   }
+  //guardando en spiff
   lcd.clear();
   lcd.setCursor(0,0);
   lcd.print("Guardando Calibracion ");
@@ -213,10 +215,22 @@ void calibrationPH4(){
 //Calibracion R2 x 1 minuto
 void calibrationPH7(){
   for(int i=0;i<60;i++){
-    R2 = analogRead(A0);
+    R2 = analogRead(sensorph);
+     Serial.println(R2);
     calibration_analog_Display(7,i);
     delay(1000);
   }
+  //guardando en spiff
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Guardando Calibracion ");
+  lcd.setCursor(0,1);
+  lcd.print("PH 7.0 ");
+  String NP = String(R2);
+  writeFile(LittleFS, "/r2.txt", NP.c_str());
+  delay(1000);
+  readFile(LittleFS, "/r2.txt");
+  Serial.println(" dato recuperado: " + value );
   //Volver a menu de calibracion
   lcd.clear();
   showDisplay=1;
@@ -227,10 +241,22 @@ void calibrationPH7(){
 //Calibracion R3 x 1 minuto
 void calibrationPH10(){
   for(int i=0;i<60;i++){
-    R3 = analogRead(A0);
+    R3 = analogRead(sensorph);
+     Serial.println(R3);
     calibration_analog_Display(10,i);
     delay(1000);
   }
+  //guardando en spiff
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Guardando Calibracion ");
+  lcd.setCursor(0,1);
+  lcd.print("PH 10.1 ");
+  String NP = String(R3);
+  writeFile(LittleFS, "/r3.txt", NP.c_str());
+  delay(1000);
+  readFile(LittleFS, "/r3.txt");
+  Serial.println(" dato recuperado: " + value );
  //Volver a menu de calibracion
   lcd.clear();
   showDisplay=1;
