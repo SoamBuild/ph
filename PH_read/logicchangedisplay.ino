@@ -8,7 +8,18 @@ void changeDisplay(int display) {
       //mainMenu=false;
       //subMenu_Medir=true;
     }
-    if(display==1){
+    if(display==3){
+      lcd.clear();
+      displayNumber=3;
+      // In medir calibracion menu
+      //lcd.clear();
+      //displayNumber=3;
+      //mainMenu=false;
+      //subMenu_Calibrar=true;
+    }
+    if(display==4){
+      lcd.clear();
+      displayNumber=4;
       // In medir calibracion menu
       //lcd.clear();
       //displayNumber=3;

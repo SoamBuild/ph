@@ -79,6 +79,12 @@ void loop()
   if(mainMenu==true && displayNumber ==2){
     calibrationPH4();
   }
+   if(mainMenu==true && displayNumber ==3){
+    calibrationPH7();
+  }
+   if(mainMenu==true && displayNumber ==4){
+    calibrationPH10();
+   }
   /*
   //Menu de lectura
   if(subMenu_Medir==true&& displayNumber==2){
@@ -159,8 +165,6 @@ void calibrationPH4(){
   }
   //Volver a menu de calibracion
   lcd.clear();
- // subMenu_Calibrar_2=false;
-  //subMenu_Calibrar=true;
   showDisplay=1;
   displayNumber=0;
 }
@@ -173,9 +177,9 @@ void calibrationPH7(){
   }
   //Volver a menu de calibracion
   lcd.clear();
-  //subMenu_Calibrar_2=false;
-  //subMenu_Calibrar=true;
+  showDisplay=1;
   displayNumber=0;
+
   
 }
 //Calibracion R3 x 1 minuto
@@ -185,10 +189,9 @@ void calibrationPH10(){
     calibration_analog_Display(10,i);
     delay(1000);
   }
-  //Volver a menu de calibracion
+ //Volver a menu de calibracion
   lcd.clear();
-  subMenu_Calibrar_2=false;
-  subMenu_Calibrar=true;
-  displayNumber=3;
+  showDisplay=1;
+  displayNumber=0;
   
 }
