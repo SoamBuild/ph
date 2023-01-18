@@ -134,44 +134,26 @@ void setup()
   }
   //Firebase setup
    config.api_key = API_KEY;
-
-  // Assign the user sign in credentials
   auth.user.email = USER_EMAIL;
   auth.user.password = USER_PASSWORD;
-
-  // Assign the RTDB URL (required)
   config.database_url = DATABASE_URL;
-
   Firebase.reconnectWiFi(true);
   fbdo.setResponseSize(4096);
-
-  // Assign the callback function for the long running token generation task */
   config.token_status_callback = tokenStatusCallback; //see addons/TokenHelper.h
-
-  // Assign the maximum retry of token generation
   config.max_token_generation_retry = 5;
-
-  // Initialize the library with the Firebase authen and config
   Firebase.begin(&config, &auth);
-
-  // Getting the user UID might take a few seconds
   Serial.println("Getting User UID");
   while ((auth.token.uid) == "") {
     Serial.print('.');
     delay(1000);
     counter++;
     if (counter == 180) {
-
       ESP.restart();
     }
-
   }
-  // Print user UID
-  uid = auth.token.uid.c_str();
+   uid = auth.token.uid.c_str();
   Serial.print("User UID: ");
   Serial.println(uid);
-
-  // Update database path
   databasePath = "/UsersData/" + uid + "/readings";
  
   //Check Calibration PH4
@@ -197,11 +179,14 @@ void setup()
 
 
 void loop()
-{
-  btn_ENTER.read(); //Read change btn_ENTER
+ {
+   btn_ENTER.read(); //Read change btn_ENTER
   btn_NEXT.read();
-  
-  
+  if (Firebase.isTokenExpired()){
+    Firebase.refreshToken(&config);
+    Serial.println("Refresh token");
+  }
+   
   if (mainMenu == true ) {
     firtsDisplay(showDisplay);
   }
