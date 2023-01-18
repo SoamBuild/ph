@@ -5,6 +5,10 @@
 #include <EasyButton.h>
 #include "FS.h"
 #include <LittleFS.h>
+#include <WiFiManager.h> 
+#include <WiFi.h>
+#include <NTPClient.h>
+#include <WiFiUdp.h>
 
 #define FORMAT_LITTLEFS_IF_FAILED true
 
@@ -50,10 +54,14 @@ boolean mainMenu= true;
 //Variable x get memory spiffs
 String value;
 
+//object WifiManager
+ WiFiManager wm;
+ 
+
 
 void setup()
 {
-   //Serial init
+  //Serial init
   Serial.begin(9600);
   // Init and function btn_ENTER pressed
   btn_ENTER.begin();
@@ -65,13 +73,43 @@ void setup()
   lcd.backlight();
   //Print hello Message
   lcd.print("PH Ducasse");
-  delay (3000);
+  delay (2000);
   lcd.clear();
   //Mount spiff memory
    if (!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED)) {
     Serial.println("LittleFS Mount Failed");
     return;
   }
+  lcd.setCursor(0,0);
+  lcd.print("Setup Wifi");
+   delay (2000);
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Wifi AP");
+  lcd.setCursor(0,1);
+  lcd.print("Estanque1 WM");
+  //WIFI MANAGER
+  const char* menu[] = {"wifi","param","restart","exit"}; //Disabled infobtn
+  wm.setMenu(menu,4);
+  wm.setConnectTimeout(120);// tiempo en segundo
+   bool res;
+  res = wm.autoConnect("Estanque1 WM"); 
+  if (!res) {
+    Serial.println("Failed to connect");
+    lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("wifi failed");
+    // ESP.restart();
+  }
+  else {
+      lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("wifi ok");
+    //if you get here you have connected to the WiFi
+    Serial.println("connected...yeey :)");
+  }
+
+ 
   //Check Calibration PH4
   readFile(LittleFS, "/r1.txt");
   Serial.println(" dato recuperado: " + value );
@@ -117,6 +155,10 @@ void loop()
    if(mainMenu==true && displayNumber ==4){
     calibrationPH10();
    }
+  if(mainMenu==true && displayNumber ==5){
+    wm.resetSettings();
+    ESP.restart();
+  }
   /*
   //Menu de lectura
   if(subMenu_Medir==true&& displayNumber==2){

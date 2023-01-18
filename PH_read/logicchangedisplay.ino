@@ -26,6 +26,15 @@ void changeDisplay(int display) {
       //mainMenu=false;
       //subMenu_Calibrar=true;
     }
+      if(display==5){
+      lcd.clear();
+      displayNumber=5;
+      // In medir calibracion menu
+      //lcd.clear();
+      //displayNumber=3;
+      //mainMenu=false;
+      //subMenu_Calibrar=true;
+    }
   }}
   /*
   //Medir menu
