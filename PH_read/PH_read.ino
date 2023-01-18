@@ -1,7 +1,12 @@
+#include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <RotaryEncoder.h>
 #include <EasyButton.h>
+#include "FS.h"
+#include <LittleFS.h>
+
+#define FORMAT_LITTLEFS_IF_FAILED true
 
 #define ROTARYSTEPS 1
 
@@ -41,24 +46,50 @@ boolean subMenu_Calibrar=false;
 boolean subMenu_Calibrar_2=false;
 boolean mainMenu= true;
 
+//Variable x get memory spiffs
+String value;
 
 
 void setup()
 {
+   //Serial init
+  Serial.begin(9600);
   // Init and function btn_ENTER pressed
   btn_ENTER.begin();
   btn_NEXT.begin();
   btn_ENTER.onPressed(onPressed);
   btn_NEXT.onPressed(onPressed2);
-  //Serial init
-  Serial.begin(9600);
-  //LCD INIT 
+   //LCD INIT 
   lcd.init();
   lcd.backlight();
   //Print hello Message
   lcd.print("PH Ducasse");
- delay (3000);
+  delay (3000);
   lcd.clear();
+  //Mount spiff memory
+   if (!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED)) {
+    Serial.println("LittleFS Mount Failed");
+    return;
+  }
+  //Check Calibration PH4
+  readFile(LittleFS, "/r1.txt");
+  Serial.println(" dato recuperado: " + value );
+  R1 = value.toFloat();
+  Serial.println(" calibracion recuperada: " + String(R1));
+  delay(2000);
+  //Check Calibration PH7
+  readFile(LittleFS, "/r2.txt");
+  Serial.println(" dato recuperado: " + value );
+  R2 = value.toFloat();
+  Serial.println(" calibracion recuperada: " + String(R2));
+  delay(2000);
+  //Check Calibration PH10
+  readFile(LittleFS, "/r3.txt");
+  Serial.println(" dato recuperado: " + value );
+  R3 = value.toFloat();
+  Serial.println(" calibracion recuperada: " + String(R3));
+  delay(2000);
+
 }
 
 
@@ -160,10 +191,21 @@ void toCloud(int valuetoSave){
 void calibrationPH4(){
   for(int i=0;i<60;i++){
     R1 = analogRead(A0);
+    Serial.println(R1);
     calibration_analog_Display(4,i);
     delay(1000);
   }
-  //Volver a menu de calibracion
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Guardando Calibracion ");
+  lcd.setCursor(0,1);
+  lcd.print("PH 4.0 ");
+  String NP = String(R1);
+  writeFile(LittleFS, "/r1.txt", NP.c_str());
+  delay(1000);
+  readFile(LittleFS, "/r1.txt");
+  Serial.println(" dato recuperado de la memoria r1: " + value );
+   //Volver a menu de calibracion
   lcd.clear();
   showDisplay=1;
   displayNumber=0;
