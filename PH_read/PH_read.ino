@@ -13,8 +13,7 @@
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
 
-
-
+//spiffs
 #define FORMAT_LITTLEFS_IF_FAILED true
 
 #define ROTARYSTEPS 1
@@ -26,6 +25,7 @@ int displayNumber =1; // id display
 int count_SW=1;  //Click count x SW_ENCODER
 int showDisplay=1; // Update value rotary
 
+//PH CONTROL
 float const ph4 = 4.00; // Value x PH Calculated
 float const ph7 = 7.00;// Value x PH Calculated
 float const ph10 = 10.00;// Value x PH Calculated
@@ -42,26 +42,20 @@ const int ENCODER_CLK = 14;// Pins x Encoder
 const int ENCODER_DT = 15;// Pins x Encoder
 const int ENCODER_SW = 16;// Pins x Encoder
 RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT); // Setup x Encoder
-
-
+//Buttons x navigations
 const int button_NEXT = 18;
 const int button_ENTER = 5;
-
 EasyButton btn_ENTER(button_ENTER);// Check x click rotarys
 EasyButton btn_NEXT(button_NEXT);// Check x click rotarys
-
 //Enter or Out Menus
 boolean subMenu_Medir = false;
 boolean subMenu_Calibrar=false;
 boolean subMenu_Calibrar_2=false;
 boolean mainMenu= true;
-
 //Variable x get memory spiffs
 String value;
-
 //object WifiManager
 WiFiManager wm;
-
 //Firebase Setting
 #define API_KEY       ""
 #define DATABASE_URL  ""
@@ -80,6 +74,10 @@ String phPath = "/ph";
 String timePath = "/timestamp";
 String parentPath;
 FirebaseJson json;
+//NTP 
+WiFiUDP ntpUDP;
+NTPClient timeClient(ntpUDP, "pool.ntp.org");
+int timestamp;
  
 
 
@@ -116,7 +114,7 @@ void setup()
   const char* menu[] = {"wifi","param","restart","exit"}; //Disabled infobtn
   wm.setMenu(menu,4);
   wm.setConnectTimeout(60);// tiempo en segundo
-   bool res;
+  bool res;
   res = wm.autoConnect("Estanque1 WM"); 
   if (!res) {
    Serial.println("Failed to connect");
