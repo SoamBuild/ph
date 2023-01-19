@@ -68,8 +68,9 @@ WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 int timestamp;
 //Neopixel pins and object
-#define neopin =26;
-#define numpixel =1;
+const int  neopin =26;
+const int  numpixel =1;
+Adafruit_NeoPixel pixels(numpixel, neopin, NEO_GRB + NEO_KHZ800);
 
 // Muestreo
 unsigned long previousMillis = millis();
@@ -84,9 +85,13 @@ void setup()
   btn_NEXT.begin();
   btn_ENTER.onPressed(onPressed);
   btn_NEXT.onPressed(onPressed2);
+  //Neopixel setup
+  pixels.begin();
   // LCD INIT
   lcd.init();
   lcd.backlight();
+  pixels.setPixelColor(1,pixels.Color(255,0,0));
+  
   // Print hello Message
   lcd.setCursor(0, 0);
   lcd.print("PH Ducasse Control2");
