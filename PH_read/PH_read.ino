@@ -46,10 +46,10 @@ String value;
 // object WifiManager
 WiFiManager wm;
 // Firebase Setting
-#define API_KEY       "AIzaSyCInsRcqVgx1nG5siOzWItlhiemvKNqq3E"
-#define DATABASE_URL  "https://test32firebase-default-rtdb.firebaseio.com/"
-#define USER_EMAIL    "arebolledo@udd.cl"
-#define USER_PASSWORD "unodos34"
+#define API_KEY       ""
+#define DATABASE_URL  ""
+#define USER_EMAIL    ""
+#define USER_PASSWORD ""
 int counter = 1;
 FirebaseData fbdo;
 FirebaseAuth auth;
