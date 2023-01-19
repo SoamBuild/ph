@@ -2,7 +2,7 @@
 void firtsDisplay(int display_Home)
 {
   lcd.setCursor(0, 0);
-  lcd.print("Ducasse PH CTRL");
+  lcd.print("Ducasse PH Control");
 
   switch (display_Home)
   {
@@ -12,13 +12,20 @@ void firtsDisplay(int display_Home)
     lcd.setCursor(10, 1);
     lcd.print(globalPh);
     lcd.setCursor(0, 13);
+    lcd.setCursor(17, 3);
+    lcd.print("1/5");
+
     // lcd.print("1/5");
     /* code */
     break;
   case 2:
+  
     lcd.setCursor(0, 1);
     lcd.print("Calibrar PH 4.0     ");
     lcd.setCursor(13, 1);
+     lcd.setCursor(17, 3);
+    lcd.print("2/5");
+
     // lcd.print("2/5");
     /* code */
     break;
@@ -26,6 +33,8 @@ void firtsDisplay(int display_Home)
     lcd.setCursor(0, 1);
     lcd.print("Calibrar PH 7.0     ");
     lcd.setCursor(13, 1);
+    lcd.setCursor(17, 3);
+    lcd.print("3/5");
     // lcd.print("3/5");
     /* code */
     break;
@@ -33,6 +42,8 @@ void firtsDisplay(int display_Home)
     lcd.setCursor(0, 1);
     lcd.print("Calibrar PH 10.0    ");
     lcd.setCursor(13, 1);
+    lcd.setCursor(17, 3);
+    lcd.print("4/5");
     // lcd.print("4/5");
     /* code */
     break;
@@ -40,6 +51,8 @@ void firtsDisplay(int display_Home)
     lcd.setCursor(0, 1);
     lcd.print("Delete WIFI");
     lcd.setCursor(13, 1);
+    lcd.setCursor(17, 3);
+    lcd.print("5/5");
     // lcd.print("5/5");
     /* code */
     break;
@@ -49,10 +62,10 @@ void setupcheck(String part, String state)
 {
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("PH Ducasse");
-  lcd.setCursor(1, 0);
+  lcd.print("PH Ducasse Boot");
+  lcd.setCursor(0, 1);
   lcd.print("Check " + part);
-  lcd.setCursor(2, 0);
+  lcd.setCursor(0, 2);
   lcd.print(state);
   delay(1200);
 }

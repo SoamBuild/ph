@@ -33,7 +33,6 @@ float R1 = 222.00;        // Value x PH Calculated
 float R2 = 395.00;        // Value x PH Calculated
 float R3 = 561.00;        // Value x PH Calculated
 int sensorph = 34;
-
 float globalPh; // Variable global para actualizar valor de PH
 
 LiquidCrystal_I2C lcd(0x27, 20, 4); // Setup x lcd
@@ -95,18 +94,18 @@ void setup()
   lcd.init();
   lcd.backlight();
   // Print hello Message
-  lcd.setCursor(0, 5);
-  lcd.print("PH Ducasse");
-  delay(2000);
-  lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Setup Wifi");
+  lcd.print("PH Ducasse Control");
   delay(2000);
-  lcd.clear();
-  lcd.setCursor(0, 0);
-  lcd.print("Wifi AP");
+  // lcd.clear();
   lcd.setCursor(0, 1);
-  lcd.print("Estanque1 WM");
+  lcd.print("Setup Wifi          ");
+  delay(2000);
+ // lcd.clear();
+  lcd.setCursor(0, 2);
+  lcd.print("Wifi AP             ");
+  lcd.setCursor(0, 3);
+  lcd.print("Estanque1 WM        ");
   // WIFI MANAGER
   const char *menu[] = {"wifi", "param", "restart", "exit"}; // Disabled infobtn
   wm.setMenu(menu, 4);
@@ -124,7 +123,7 @@ void setup()
     setupcheck("Wifi", "Ok");
     Serial.println("connected");
   }
-  setupcheck("Database connect", "Checking");
+  setupcheck("DB connect", "Checking");
   // Firebase setup
   config.api_key = API_KEY;
   auth.user.email = USER_EMAIL;
@@ -143,7 +142,7 @@ void setup()
     counter++;
     if (counter == 180)
     {
-      setupcheck("Database connect", "Error");
+      setupcheck("DB connect", "Error");
       ESP.restart();
     }
   }
@@ -154,23 +153,23 @@ void setup()
   // ntp setup
   timeClient.begin();
   // Mount spiff memory
-  setupcheck("Mount InternalDB", "Mounting");
+  setupcheck("Mount localDB", "Mounting");
   if (!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED))
   {
     Serial.println("LittleFS Mount Failed");
-    setupcheck("Mount InternalDB", "Error");
+    setupcheck("Mount localDB", "Error");
     return;
   }
 
   // Check Calibration PH4
-  setupcheck("Calibracion PH4.0", "Ok");
+  setupcheck("Calibracion check", "PH4.0");
   readFile(LittleFS, "/r1.txt");
   Serial.println(" dato recuperado: " + value);
   R1 = value.toFloat();
   Serial.println(" calibracion recuperada: " + String(R1));
   delay(2000);
   // Check Calibration PH7
-  setupcheck("Calibracion PH7.0", "Ok");
+  setupcheck("Calibracion check", "Ok");
   readFile(LittleFS, "/r2.txt");
   Serial.println(" dato recuperado: " + value);
   R2 = value.toFloat();
