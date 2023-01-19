@@ -236,6 +236,7 @@
                 "C:\\Users\\Marcus\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\SPI\\src",
                 "C:\\Users\\Marcus\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\Ethernet\\src",
                 "C:\\Users\\Marcus\\AppData\\Local\\Arduino15\\packages\\esp32\\hardware\\esp32\\2.0.6\\libraries\\WiFiClientSecure\\src",
+                "C:\\Users\\Marcus\\Documents\\Arduino\\libraries\\Adafruit_NeoPixel",
                 "c:\\users\\marcus\\appdata\\local\\arduino15\\packages\\esp32\\tools\\xtensa-esp32-elf-gcc\\gcc8_4_0-esp-2021r2-patch5\\xtensa-esp32-elf\\include\\c++\\8.4.0",
                 "c:\\users\\marcus\\appdata\\local\\arduino15\\packages\\esp32\\tools\\xtensa-esp32-elf-gcc\\gcc8_4_0-esp-2021r2-patch5\\xtensa-esp32-elf\\include\\c++\\8.4.0\\xtensa-esp32-elf",
                 "c:\\users\\marcus\\appdata\\local\\arduino15\\packages\\esp32\\tools\\xtensa-esp32-elf-gcc\\gcc8_4_0-esp-2021r2-patch5\\xtensa-esp32-elf\\include\\c++\\8.4.0\\backward",

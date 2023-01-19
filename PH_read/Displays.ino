@@ -64,7 +64,7 @@ void setupcheck(String part, String state)
   lcd.setCursor(0, 0);
   lcd.print("PH Ducasse Boot");
   lcd.setCursor(0, 1);
-  lcd.print("Check " + part);
+  lcd.print(part);
   lcd.setCursor(0, 2);
   lcd.print(state);
   delay(1200);

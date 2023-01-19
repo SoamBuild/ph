@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-#include <RotaryEncoder.h>
 #include <EasyButton.h>
 #include "FS.h"
 #include <LittleFS.h>
@@ -12,17 +11,11 @@
 #include <Firebase_ESP_Client.h>
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
+#include <Adafruit_NeoPixel.h>
 
 // spiffs
 #define FORMAT_LITTLEFS_IF_FAILED true
-
-#define ROTARYSTEPS 1
-
-int newPos;            // Value Rotary
-int lastPos = -1;      // Value x rotary
-int check = 0;         // value x rotary
 int displayNumber = 1; // id display
-int count_SW = 1;      // Click count x SW_ENCODER
 int showDisplay = 1;   // Update value rotary
 
 // PH CONTROL
@@ -32,18 +25,15 @@ float const ph10 = 10.00; // Value x PH Calculated
 float R1 = 222.00;        // Value x PH Calculated
 float R2 = 395.00;        // Value x PH Calculated
 float R3 = 561.00;        // Value x PH Calculated
-int sensorph = 34;
+int sensorph = 32;
 float globalPh; // Variable global para actualizar valor de PH
 
 LiquidCrystal_I2C lcd(0x27, 20, 4); // Setup x lcd
 
-const int ENCODER_CLK = 14;                     // Pins x Encoder
-const int ENCODER_DT = 15;                      // Pins x Encoder
-const int ENCODER_SW = 16;                      // Pins x Encoder
-RotaryEncoder encoder(ENCODER_CLK, ENCODER_DT); // Setup x Encoder
+
 // Buttons x navigations
-const int button_NEXT = 18;
-const int button_ENTER = 5;
+const int button_NEXT = 17;
+const int button_ENTER = 16;
 EasyButton btn_ENTER(button_ENTER); // Check x click rotarys
 EasyButton btn_NEXT(button_NEXT);   // Check x click rotarys
 // Enter or Out Menus
@@ -77,6 +67,10 @@ FirebaseJson json;
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, "pool.ntp.org");
 int timestamp;
+//Neopixel pins and object
+#define neopin =26;
+#define numpixel =1;
+
 // Muestreo
 unsigned long previousMillis = millis();
 long muestreo = 30000;
@@ -95,7 +89,7 @@ void setup()
   lcd.backlight();
   // Print hello Message
   lcd.setCursor(0, 0);
-  lcd.print("PH Ducasse Control");
+  lcd.print("PH Ducasse Control2");
   delay(2000);
   // lcd.clear();
   lcd.setCursor(0, 1);
@@ -162,21 +156,21 @@ void setup()
   }
 
   // Check Calibration PH4
-  setupcheck("Calibracion check", "PH4.0");
+  setupcheck("Calibracion check", "Ph4.0 Ok");
   readFile(LittleFS, "/r1.txt");
   Serial.println(" dato recuperado: " + value);
   R1 = value.toFloat();
   Serial.println(" calibracion recuperada: " + String(R1));
   delay(2000);
   // Check Calibration PH7
-  setupcheck("Calibracion check", "Ok");
+  setupcheck("Calibracion check", "Ph 7.0 Ok");
   readFile(LittleFS, "/r2.txt");
   Serial.println(" dato recuperado: " + value);
   R2 = value.toFloat();
   Serial.println(" calibracion recuperada: " + String(R2));
   delay(2000);
   // Check Calibration PH10
-  setupcheck("Calibracion PH10.0", "Ok");
+  setupcheck("Calibracion check", "Ph 10.0 Ok");
   readFile(LittleFS, "/r3.txt");
   Serial.println(" dato recuperado: " + value);
   R3 = value.toFloat();
