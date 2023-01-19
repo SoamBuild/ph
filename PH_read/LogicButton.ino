@@ -3,15 +3,6 @@ void onPressed()
 {
   Serial.println("Anotherbtn");
   changeDisplay(showDisplay);
-  /*
-  delay(1000);
-  changeDisplay(showDisplay);
-  if(mainMenu==false){
-  count_SW = count_SW+1; // debounce click x submenus
-}else{
-  count_SW=1;// en menu principal reestablece el valor
-}
-*/
 }
 void onPressed2()
 {
@@ -23,7 +14,6 @@ void onPressed2()
 
 void limits(int min, int max)
 {
-
   if (showDisplay == max + 1)
   {
     showDisplay = min;
