@@ -90,8 +90,7 @@ void setup()
   // LCD INIT
   lcd.init();
   lcd.backlight();
-  pixels.setPixelColor(1,pixels.Color(255,0,0));
-  
+  pixels.changePixel(255,0,0);
   // Print hello Message
   lcd.setCursor(0, 0);
   lcd.print("PH Ducasse Control2");
