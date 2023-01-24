@@ -247,7 +247,7 @@ void loop()
     wm.resetSettings();
     ESP.restart();
   }
- // capturedata();
+  capturedata();
 }
 // GetTimefromNTP
 unsigned long getTime()
