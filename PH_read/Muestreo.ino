@@ -1,25 +1,22 @@
-
 void capturedata()
 {
-
     unsigned long currentMillis = millis();
     if (currentMillis - previousMillis >= muestreo)
     {
         previousMillis = currentMillis;
-
         timestamp = getTime();
-
-        //  datoSD = String(timestamp) + "," + String(ph_avg) + "\n";
-        // Serial.println(datoSD);
-        // appendFile(SD, filenameCSV, datoSD.c_str());
-        // digitalWrite(LED, HIGH);
-        //  delay(1000);
+        datoSD = String(timestamp) + "," + String(globalPh) + "\n";
+        Serial.println(datoSD);
+        appendFile(SD, filenameCSV, datoSD.c_str());
+        delay(1000);
+        changePixel(0,255,0);
         publish();
+        offpixels();
+        changePixel(255,0,0);
     }
 }
 void publish()
 {
-
     // Get current timestamp
     timestamp = getTime();
     Serial.print("time: ");

@@ -12,6 +12,8 @@
 #include "addons/TokenHelper.h"
 #include "addons/RTDBHelper.h"
 #include <Adafruit_NeoPixel.h>
+#include "SD.h"
+#include "SPI.h"
 
 // spiffs
 #define FORMAT_LITTLEFS_IF_FAILED true
@@ -71,10 +73,18 @@ int timestamp;
 const int  neopin =26;
 const int  numpixel =1;
 Adafruit_NeoPixel pixels(numpixel, neopin, NEO_GRB + NEO_KHZ800);
+// local sd variable
+char filenameCSV[25] = "";
+String datoSD;
 
 // Muestreo
 unsigned long previousMillis = millis();
 long muestreo = 30000;
+#define SD_CS   5
+#define SD_SCLK   18
+#define SD_MISO   19
+#define SD_MOSI   23
+
 
 void setup()
 {
@@ -90,7 +100,7 @@ void setup()
   // LCD INIT
   lcd.init();
   lcd.backlight();
-  pixels.changePixel(255,0,0);
+  changePixel(255,0,0);
   // Print hello Message
   lcd.setCursor(0, 0);
   lcd.print("PH Ducasse Control2");
@@ -150,6 +160,25 @@ void setup()
   databasePath = "/UsersData/" + uid + "/readings";
   // ntp setup
   timeClient.begin();
+  //SD setup
+  SPI.begin(SD_SCLK , SD_MISO, SD_MOSI);
+   setupcheck("Mount local DB ", "SD CHECK");
+  if (!SD.begin(SD_CS)) {
+    Serial.println("Card Mount Failed");
+       setupcheck("Mount local DB", "SD FAIL");
+    return;
+  }else{
+    setupcheck("Mount local DB", "SD Ok");
+  }
+  int n = 0;
+  snprintf(filenameCSV, sizeof(filenameCSV), "/datos%03d.csv", n); // includes a three-digit sequence number in the file name
+  while (SD.exists(filenameCSV)) {
+    n++;
+    snprintf(filenameCSV, sizeof(filenameCSV), "/datos%03d.csv", n);
+  }
+  File file = SD.open(filenameCSV, FILE_READ);
+  Serial.println(filenameCSV);
+  file.close();
   // Mount spiff memory
   setupcheck("Mount localDB", "Mounting");
   if (!LittleFS.begin(FORMAT_LITTLEFS_IF_FAILED))
@@ -158,7 +187,6 @@ void setup()
     setupcheck("Mount localDB", "Error");
     return;
   }
-
   // Check Calibration PH4
   setupcheck("Calibracion check", "Ph4.0 Ok");
   readFile(LittleFS, "/r1.txt");
@@ -201,7 +229,6 @@ void loop()
   if (mainMenu == true && showDisplay == 1)
   {
     getPH();
-    // firtsDisplay(showDisplay);
   }
   if (mainMenu == true && displayNumber == 2)
   {
@@ -221,34 +248,6 @@ void loop()
     ESP.restart();
   }
  // capturedata();
-  /*
-  //Menu de lectura
-  if(subMenu_Medir==true&& displayNumber==2){
-
-    rotary(0,1);
-    readingDisplay(showDisplay);
-    getPH();
-  }
-  //Menu de calibracion
-  if(subMenu_Calibrar==true&& displayNumber==3){
-
-    rotary(0,3);
-    calibrateDisplay(showDisplay);
-  }
-  //Calibracion de R1
-  if(subMenu_Calibrar_2 ==true && displayNumber ==4){
-    calibrationPH4();
-  }
-  //Calibracion de R2
-  if(subMenu_Calibrar_2 ==true && displayNumber ==5){
-    calibrationPH7();
-  }
-  //Calibracion de R3
-    if(subMenu_Calibrar_2 ==true && displayNumber ==6){
-    calibrationPH10();
-  }
-
-    */
 }
 // GetTimefromNTP
 unsigned long getTime()
