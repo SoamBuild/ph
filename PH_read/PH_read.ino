@@ -113,13 +113,14 @@ void setup()
   lcd.setCursor(0, 2);
   lcd.print("Wifi AP             ");
   lcd.setCursor(0, 3);
-  lcd.print("Estanque1 WM        ");
+  String wifiName = "Estanque "+numeroID+" WM";
+  lcd.print("wifiName        ");
   // WIFI MANAGER
   const char *menu[] = {"wifi", "param", "restart", "exit"}; // Disabled infobtn
   wm.setMenu(menu, 4);
   wm.setConnectTimeout(60); // tiempo en segundo
   bool res;
-  res = wm.autoConnect("Estanque1 WM");
+  res = wm.autoConnect(wifiName.c_str());
   if (!res)
   {
     Serial.println("Failed to connect");
